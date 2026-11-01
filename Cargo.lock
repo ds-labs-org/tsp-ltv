@@ -1328,8 +1328,7 @@ dependencies = [
 [[package]]
 name = "kryptering"
 version = "0.7.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8e28992e23beb2622bf1e2492ba7e838abb65186578e05894bf5154c69b74c5e"
+source = "git+https://github.com/ds-labs-org/kryptering?branch=claude%2Fproject-thread-utqien#0eaa759ba672fc8ea50040c5fcf2b131efe9479c"
 dependencies = [
  "aes",
  "aes-gcm",

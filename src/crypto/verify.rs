@@ -1154,7 +1154,17 @@ mod tests {
         assert!(SignaturePolicy::allow_legacy().legacy_allowed());
     }
 
+    // With only the verify subset of the RustCrypto provider, Ed25519 is not
+    // compiled in and must be reported as unsupported instead.
     #[test]
+    #[cfg(all(feature = "rustcrypto-verify", not(feature = "rustcrypto")))]
+    fn test_ed25519_oid_unsupported_with_verify_subset() {
+        let result = verify_signature_by_oid(b"tbs", b"sig", b"bad_spki", &OID_ED25519);
+        assert!(result.is_err());
+    }
+
+    #[test]
+    #[cfg(any(feature = "rustcrypto", feature = "aws-lc"))]
     fn test_ed25519_oid_dispatches() {
         let ed_oid = OID_ED25519;
         let result = verify_signature_by_oid(b"tbs", b"sig", b"bad_spki", &ed_oid);

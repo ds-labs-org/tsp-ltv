@@ -24,6 +24,9 @@ default = [
 
 # Document cryptography provider (exactly one).
 rustcrypto = ["kryptering/rustcrypto"]
+# Verify-oriented subset of the RustCrypto provider: digests, HMAC, RSA and
+# NIST-curve ECDSA only (kryptering `rustcrypto-core`).
+rustcrypto-verify = ["kryptering/rustcrypto-core"]
 aws-lc = ["kryptering/aws-lc"]
 
 # Network TLS provider (exactly one whenever `tsp` is enabled).
@@ -113,3 +116,7 @@ sha1 = { version = "0.10", features = ["oid"] }
 md-5 = { version = "0.10", features = ["oid"] }
 digest = "0.10"
 dsa = "0.6"
+
+# ds-labs fork: kryptering with per-family RustCrypto features.
+[patch.crates-io]
+kryptering = { git = "https://github.com/ds-labs-org/kryptering", branch = "claude/project-thread-utqien" }
