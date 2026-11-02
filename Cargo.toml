@@ -24,6 +24,9 @@ default = [
 
 # Document cryptography provider (exactly one).
 rustcrypto = ["kryptering/rustcrypto"]
+# Verify-oriented subset of the RustCrypto provider: digests, HMAC, RSA and
+# NIST-curve ECDSA only (kryptering `rustcrypto-core`).
+rustcrypto-verify = ["kryptering/rustcrypto-core"]
 aws-lc = ["kryptering/aws-lc"]
 
 # Network TLS provider (exactly one whenever `tsp` is enabled).

@@ -14,9 +14,16 @@
 //! jades for JAdES) builds its own format-specific embedding on top
 //! of these shared clients.
 
-#[cfg(not(any(feature = "rustcrypto", feature = "aws-lc")))]
+#[cfg(not(any(
+    feature = "rustcrypto",
+    feature = "rustcrypto-verify",
+    feature = "aws-lc"
+)))]
 compile_error!("select exactly one document provider: rustcrypto or aws-lc");
-#[cfg(all(feature = "rustcrypto", feature = "aws-lc"))]
+#[cfg(all(
+    any(feature = "rustcrypto", feature = "rustcrypto-verify"),
+    feature = "aws-lc"
+))]
 compile_error!("document provider features are mutually exclusive: select exactly one");
 #[cfg(all(
     feature = "tsp",
